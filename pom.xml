@@ -7,6 +7,16 @@
   <version>1.0-SNAPSHOT</version>
   <name>myapp Maven Webapp</name>
   <url>http://maven.apache.org</url>
+  <properties>
+    <sonar.host.url>http://13.127.160.83:9000/</sonar.host.url>
+    <sonar.token>squ_6af30e77ac157a85b8f735cbf30b8e3f54ec26b8</sonar.token>
+		<jdk.version>1.8</jdk.version>
+		<spring.version>5.1.2.RELEASE</spring.version>
+		<junit.version>4.11</junit.version>
+		<log4j.version>1.2.17</log4j.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	</properties>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -18,4 +28,4 @@
   <build>
     <finalName>myapp</finalName>
   </build>
-</project>
+</prject>
