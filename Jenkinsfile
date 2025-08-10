@@ -2,9 +2,13 @@ pipeline {
     agent any
 
     tools {
-	 maven 'maven 3.8.7'
-     git 'Default'
-   }
+        maven 'maven 3.8.7'
+    }
+
+    environment {
+        SONAR_HOST_URL = 'http://13.127.160.83:9000'
+        SONAR_LOGIN = credentials('squ_fb064bf66480982cc6728e26fccfa7b10b63efcb')
+    }
 
     stages {
         stage('Git Checkout') {
@@ -34,8 +38,8 @@ pipeline {
                     sh """
                         mvn sonar:sonar \
                           -Dsonar.projectKey=myapp \
-                          -Dsonar.host.url=${http://13.127.160.83:9000/} \
-                          -Dsonar.login=${squ_fb064bf66480982cc6728e26fccfa7b10b63efcb}
+                          -Dsonar.host.url=$SONAR_HOST_URL \
+                          -Dsonar.login=$SONAR_LOGIN
                     """
                 }
             }
