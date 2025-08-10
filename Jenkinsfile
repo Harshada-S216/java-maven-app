@@ -7,7 +7,6 @@ pipeline {
 
     environment {
         SONAR_HOST_URL = 'http://13.127.160.83:9000'
-        SONAR_LOGIN = credentials('squ_fb064bf66480982cc6728e26fccfa7b10b63efcb')
     }
 
     stages {
@@ -34,13 +33,15 @@ pipeline {
         stage('SonarQube Scan') {
             when { branch 'main' }
             steps {
-                withSonarQubeEnv('SonarQube') {
-                    sh """
-                        mvn sonar:sonar \
-                          -Dsonar.projectKey=myapp \
-                          -Dsonar.host.url=$SONAR_HOST_URL \
-                          -Dsonar.login=$SONAR_LOGIN
-                    """
+                withCredentials([string(credentialsId: 'squ_fb064bf66480982cc6728e26fccfa7b10b63efcb', variable: 'SONAR_LOGIN')]) {
+                    withSonarQubeEnv('SonarQube') {
+                        sh """
+                            mvn sonar:sonar \
+                              -Dsonar.projectKey=myapp \
+                              -Dsonar.host.url=$SONAR_HOST_URL \
+                              -Dsonar.login=$SONAR_LOGIN
+                        """
+                    }
                 }
             }
         }
