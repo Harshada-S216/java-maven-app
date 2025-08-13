@@ -29,7 +29,17 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
+         
+     <distributionManagement>
+	
+	    <snapshotRepository>
+	        <id>nexus</id>
+	        <name>JENKINS-NEXUS-snap-HOSTED-REPO</name>
+	        <url>http://3.110.178.0:8081/repository/JENKINS-NEXUS-snap-HOSTED-REPO/</url>
+	    </snapshotRepository>
+              
+     </distributionManagement>
+         
     <build>
         <finalName>myapp</finalName>
         <plugins>
