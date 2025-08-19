@@ -1,13 +1,12 @@
+// Define variables accessible across stages
+def START_TIME
+def END_TIME
+
 pipeline {
     agent any
 
     tools {
         maven 'maven9.9'
-    }
-
-    environment {
-        START_TIME = ""
-        END_TIME   = ""
     }
 
     stages {
@@ -55,7 +54,7 @@ pipeline {
             steps {
                 script {
                     END_TIME = System.currentTimeMillis()
-                    def totalDuration = (END_TIME.toLong() - START_TIME.toLong()) / 1000
+                    def totalDuration = (END_TIME - START_TIME) / 1000
                     echo "Pipeline finished at: ${END_TIME}"
                     echo "Total pipeline duration: ${totalDuration} seconds"
                 }
