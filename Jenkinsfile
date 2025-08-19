@@ -1,4 +1,4 @@
-// Define variables accessible across stages
+// Global variables for pipeline timing
 def START_TIME
 def END_TIME
 
@@ -7,6 +7,10 @@ pipeline {
 
     tools {
         maven 'maven9.9'
+    }
+
+    options {
+        timestamps()   // adds wall-clock timestamps to console logs
     }
 
     stages {
